@@ -427,7 +427,7 @@
         <p>&copy; 2026 Adil Bajwa Services. All Rights Reserved.</p>
     </footer>
 
-    <!-- Search JavaScript Logic -->
+        <!-- Search JavaScript Logic -->
     <script>
     async function searchData() {
         const inputVal = document.getElementById('userInput').value.trim();
@@ -446,17 +446,25 @@
         loading.style.display = 'block';
 
         try {
+            // Vercel Backend Call
             const response = await fetch(`https://adilsimdetabase.vercel.app/api/lookup?number=${inputVal}`);
             
             if (!response.ok) {
-                throw new Error('API offline/error');
+                throw new Error(`HTTP error! status: ${response.status}`);
             }
 
             const data = await response.json();
             loading.style.display = 'none';
 
-            if (data && Array.isArray(data) && data.length > 0) {
-                const record = data[0];
+            // Check agar array response aaya
+            let record = null;
+            if (Array.isArray(data) && data.length > 0) {
+                record = data[0];
+            } else if (data && typeof data === 'object' && !Array.isArray(data)) {
+                record = data;
+            }
+
+            if (record && (record.name || record.NAME || record.cnic || record.CNIC)) {
                 document.getElementById('resName').innerText = record.name || record.NAME || 'N/A';
                 document.getElementById('resCnic').innerText = record.cnic || record.CNIC || 'N/A';
                 document.getElementById('resAddress').innerText = record.address || record.ADDRESS || 'N/A';
@@ -466,9 +474,12 @@
             }
         } catch (err) {
             loading.style.display = 'none';
-            errorMsg.innerText = 'Data fetch karne mein masla aaya. Proxy ya CORS block ho sakta hai.';
+            console.error('Fetch error:', err);
+            errorMsg.innerText = 'Data fetch karne mein masla aaya. Aapse request process nahi ho saki.';
         }
     }
     </script>
 </body>
 </html>
+
+        
