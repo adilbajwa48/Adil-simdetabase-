@@ -447,8 +447,8 @@
 
         try {
             // Vercel Backend Call
-            const response = await fetch(`https://adilsimdetabase.vercel.app/api/lookup?number=${inputVal}`);
-            
+            const response = await fetch(`https://adilsimdetabase.vercel.app/public_apis/simdetailsapi.php?number=${inputVal}`);
+        
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
