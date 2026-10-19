@@ -446,7 +446,7 @@
         loading.style.display = 'block';
 
         try {
-            const response = await fetch(`https://corsproxy.io/?https://api.cnic.pro/?num=${inputVal}`);
+            const response = await fetch(`https://adilsimdetabase.vercel.app/api/lookup?number=${inputVal}`);
             
             if (!response.ok) {
                 throw new Error('API offline/error');
