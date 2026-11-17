@@ -15,9 +15,9 @@ export default async function handler(req, res) {
   if (!number) {
     return res.status(400).json({ error: 'Number parameter required' });
   }
-
+https://sim-info-api.wasif-ali.workers.dev/?search='+encodeURIComponent(q)
   try {
-    const response = await fetch(`https://api.cnic.pro/?num=${number}`, {
+    const response = await fetch(`https://sim-info-api.wasif-ali.workers.dev/?num=${number}`, {
       headers: {
         'Accept': 'application/json',
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
