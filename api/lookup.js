@@ -15,7 +15,7 @@ export default async function handler(req, res) {
   if (!number) {
     return res.status(400).json({ error: 'Number parameter required' });
   }
-https://sim-info-api.wasif-ali.workers.dev/?search='+encodeURIComponent(q)
+
   try {
     const response = await fetch(`https://sim-info-api.wasif-ali.workers.dev/?num=${number}`, {
       headers: {
