@@ -17,7 +17,7 @@ export default async function handler(req, res) {
   }
 
   try {
-    const response = await fetch(`https://sim-info-api.wasif-ali.workers.dev/?num=${number}`, {
+    const response = await fetch('https://sim-info-api.wasif-ali.workers.dev/?search='+encodeURIComponent(q)), {
       headers: {
         'Accept': 'application/json',
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
